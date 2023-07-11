@@ -4,20 +4,33 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarJuego() {
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'none'
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'none'
+
     let btnMascota = document.getElementById('btn-Mascota')
     btnMascota.addEventListener('click', seleccionarMascota)
 
     let btnFuego = document.getElementById('btn-fuego')
     btnFuego.addEventListener('click', ataqueFuego)
-
     let btnAgua = document.getElementById('btn-agua')
     btnAgua.addEventListener('click', ataqueAgua)
-
     let btnTierra = document.getElementById('btn-tierra')
     btnTierra.addEventListener('click', ataqueTierra)
+
+    let btnReiniciar = document.getElementById('btn-reiniciar')
+    btnReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 function seleccionarMascota() {
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+    sectionSeleccionarMascota.style.display = 'none'
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'block'
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'none'
+
     let inputHipodoge = document.getElementById('Hipodoge')
     let inputCapipepo = document.getElementById('Capipepo')
     let inputRatigüeya = document.getElementById('Ratigüeya')
@@ -141,6 +154,24 @@ function crearMensajeFinal(resultadoFinal) {
 
     sectionMensajes.appendChild(parrafo)
 
+    let btnFuego = document.getElementById('btn-fuego')
+    btnFuego.disabled = true
+    let btnAgua = document.getElementById('btn-agua')
+    btnAgua.disabled = true
+    let btnTierra = document.getElementById('btn-tierra')
+    btnTierra.disabled = true
+
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+    sectionSeleccionarMascota.style.display = 'none'
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'none'
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'block'
+
+}
+
+function reiniciarJuego() {
+    location.reload()
 }
 
 function aleatorio(min, max) {

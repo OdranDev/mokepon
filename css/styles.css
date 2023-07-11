@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+* {
+    font-family: 'Bangers', cursive;
+}
+
+body {
+    background-color: #041562;
+}
+
+h1 {
+    color: white;
+    font-size: 36px;
+}
+
+.subtitulo {
+    color: white;
+    font-size: 24px;
+
+}
+
+/*
+label {
+    background-color: tomato;
+    width: 310px;
+    height: 50px;
+}
+
+input {
+    background-color: aqua;
+    width: 310px;
+    height: 50px;
+}
+
+button {
+    background-color: blueviolet;
+    width: 310px;
+    height: 50px;
+}
+*/
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjeta-de-mokepon {
+    width: 150px;
+    color: antiquewhite;
+    background-color: #11468f;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+    border: 1px solid yellowgreen;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjeta-de-mokepon img { 
+    width: 80px;
+}
+
+input {
+    display: none;
+}
+
+button {
+
+}

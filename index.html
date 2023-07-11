@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKEPON</title>
+    <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/main.js"></script>
 </head>
 <body>
-    <h1>MOKEPON! 🔥💦🌱</h1>
 
     <section id="seleccionar-mascota">
-        <h2>Elige a tu mascota</h2>
-
         
-        <input type="radio" name="mascota" id="Hipodoge">
-        <label>Hipodoge</label>
+        <h1 id="titulo" class="titulo">MOKEPON! 🔥💦🌱</h1>
+        
+        <h2 class="subtitulo">Elige a tu mascota</h2>
 
-        <input type="radio" name="mascota" id="Capipepo">
-        <label>Capipepo</label>
+        <div class="tarjetas">
+            <input type="radio" name="mascota" id="Hipodoge">
+            <label class="tarjeta-de-mokepon">
+                <p>Hipodoge</p>
+                <img src="img/mokepons_mokepon_hipodoge_attack.webp" alt="Hipodoge">
+            </label>
 
-        <input type="radio" name="mascota" id="Ratigüeya">
-        <label>Ratigüeya</label>
+            <input type="radio" name="mascota" id="Capipepo">
+            <label class="tarjeta-de-mokepon">
+                <p>Capipepo</p>
+                <img src="img/mokepons_mokepon_capipepo_attack.webp" alt="Capipepo">
+            </label>
+
+            <input type="radio" name="mascota" id="Ratigüeya">
+            <label class="tarjeta-de-mokepon">
+                <p>Ratigüeya</p>
+                <img src="img/mokepons_mokepon_ratigueya_attack.webp" alt="Ratigüeya">
+            </label>
+        </div>
+        
 
         <!--<input type="radio" name="mascota" id="Langostelvis">
         <label>Langostelvis</label>
@@ -60,7 +74,7 @@
     </section>
 
     <section id="reiniciar">
-        <button>Reiniciar</button>
+        <button id="btn-reiniciar">Reiniciar</button>
     </section>
 
     

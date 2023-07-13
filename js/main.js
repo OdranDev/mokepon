@@ -27,7 +27,7 @@ function seleccionarMascota() {
     let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSeleccionarAtaque.style.display = 'block'
+    sectionSeleccionarAtaque.style.display = 'flex'
     let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'none'
 
@@ -137,22 +137,28 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('mensajes')
+    let sectionMensajes = document.getElementById('resultado')
+    let ataqueDelJugador = document.getElementById('ataque-Jugador')
+    let ataqueDelEnemigo = document.getElementById('ataque-Enemigo')
+    let nuevoAtaqueJugador = document.createElement('p')
+    let nuevoAtaqueEnemigo = document.createElement('p')
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu mascota ataco con: ' + ataqueJugador + '. La mascota del enemigo ataco con: ' + ataqueEnemigo + '. ' + resultado
+    sectionMensajes.innerHTML = resultado
+    nuevoAtaqueJugador.innerHTML = ataqueJugador
+    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo
 
-    sectionMensajes.appendChild(parrafo)
+    ataqueDelJugador.appendChild(nuevoAtaqueJugador)
+    ataqueDelEnemigo.appendChild(nuevoAtaqueEnemigo)
 
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('mensajes')
+    let sectionMensajes = document.getElementById('resultado')
 
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = resultadoFinal
+    sectionMensajes.innerHTML = resultadoFinal
 
-    sectionMensajes.appendChild(parrafo)
+    //sectionMensajes.appendChild(parrafo)
 
     let btnFuego = document.getElementById('btn-fuego')
     btnFuego.disabled = true
@@ -164,9 +170,9 @@ function crearMensajeFinal(resultadoFinal) {
     let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSeleccionarAtaque.style.display = 'none'
+    sectionSeleccionarAtaque.style.display = 'flex'
     let sectionReiniciar = document.getElementById('reiniciar')
-    sectionReiniciar.style.display = 'block'
+    sectionReiniciar.style.display = 'flex'
 
 }
 

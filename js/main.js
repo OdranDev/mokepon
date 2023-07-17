@@ -1,40 +1,57 @@
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const sectionReiniciar = document.getElementById('reiniciar')
+const btnMascota = document.getElementById('btn-Mascota')
+const btnFuego = document.getElementById('btn-fuego')
+const btnAgua = document.getElementById('btn-agua')
+const btnTierra = document.getElementById('btn-tierra')
+const btnReiniciar = document.getElementById('btn-reiniciar')
+
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+const inputHipodoge = document.getElementById('Hipodoge')
+const inputCapipepo = document.getElementById('Capipepo')
+const inputRatigüeya = document.getElementById('Ratigüeya')
+const spanNombreMascota = document.getElementById('nombreMascota')
+
+const mascotaAleatorio = aleatorio(1,3)
+const spanEnemy = document.getElementById('enemy')
+
+const ataqueAleatorio = aleatorio(1,3)
+
+const spanVidasJugador = document.getElementById('vidasJugador')
+const spanVidasEnemigo = document.getElementById('vidasEnemigo')
+
+const sectionMensajes = document.getElementById('resultado')
+const ataqueDelJugador = document.getElementById('ataque-Jugador')
+const ataqueDelEnemigo = document.getElementById('ataque-Enemigo')
+const nuevoAtaqueJugador = document.createElement('p')
+const nuevoAtaqueEnemigo = document.createElement('p')
+
+const parrafo = document.createElement('p')
+
 let ataqueJugador
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarJuego() {
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'none'
-    let sectionReiniciar = document.getElementById('reiniciar')
-    sectionReiniciar.style.display = 'none'
-
-    let btnMascota = document.getElementById('btn-Mascota')
+    sectionReiniciar.style.display = 'none'    
     btnMascota.addEventListener('click', seleccionarMascota)
-
-    let btnFuego = document.getElementById('btn-fuego')
     btnFuego.addEventListener('click', ataqueFuego)
-    let btnAgua = document.getElementById('btn-agua')
     btnAgua.addEventListener('click', ataqueAgua)
-    let btnTierra = document.getElementById('btn-tierra')
     btnTierra.addEventListener('click', ataqueTierra)
-
-    let btnReiniciar = document.getElementById('btn-reiniciar')
     btnReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 function seleccionarMascota() {
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+    
     sectionSeleccionarMascota.style.display = 'none'
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    
     sectionSeleccionarAtaque.style.display = 'flex'
-    let sectionReiniciar = document.getElementById('reiniciar')
+    
     sectionReiniciar.style.display = 'none'
 
-    let inputHipodoge = document.getElementById('Hipodoge')
-    let inputCapipepo = document.getElementById('Capipepo')
-    let inputRatigüeya = document.getElementById('Ratigüeya')
-    let spanNombreMascota = document.getElementById('nombreMascota')
+    
     if (inputHipodoge.checked) {
         spanNombreMascota.innerHTML = 'Hipodoge'
         //alert('Seleccionaste a Hipodoge');
@@ -52,8 +69,6 @@ function seleccionarMascota() {
 }
 
 function mascotaEnemigo() {
-    let mascotaAleatorio = aleatorio(1,3)
-    let spanEnemy = document.getElementById('enemy')
     if (mascotaAleatorio == 1) {
         //Hipodoge
         spanEnemy.innerHTML = 'Hipodoge'
@@ -86,7 +101,6 @@ function ataqueTierra() {
 }
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1,3)
     if (ataqueAleatorio == 1) {
         ataqueEnemigo = 'FUEGO'
         //alert(ataqueEnemigo)
@@ -97,15 +111,10 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo = 'TIERRA'
         //alert(ataqueEnemigo)
     }
-
     combate()
 }
 
 function combate() {
-    let spanVidasJugador = document.getElementById('vidasJugador')
-    let spanVidasEnemigo = document.getElementById('vidasEnemigo')
-
-
     if (ataqueJugador == ataqueEnemigo) {
         crearMensaje('EMPATE')
     } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
@@ -137,43 +146,22 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultado) {
-    let sectionMensajes = document.getElementById('resultado')
-    let ataqueDelJugador = document.getElementById('ataque-Jugador')
-    let ataqueDelEnemigo = document.getElementById('ataque-Enemigo')
-    let nuevoAtaqueJugador = document.createElement('p')
-    let nuevoAtaqueEnemigo = document.createElement('p')
-
     sectionMensajes.innerHTML = resultado
     nuevoAtaqueJugador.innerHTML = ataqueJugador
     nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo
-
     ataqueDelJugador.appendChild(nuevoAtaqueJugador)
     ataqueDelEnemigo.appendChild(nuevoAtaqueEnemigo)
-
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    let sectionMensajes = document.getElementById('resultado')
-
-    let parrafo = document.createElement('p')
     sectionMensajes.innerHTML = resultadoFinal
-
     //sectionMensajes.appendChild(parrafo)
-
-    let btnFuego = document.getElementById('btn-fuego')
     btnFuego.disabled = true
-    let btnAgua = document.getElementById('btn-agua')
     btnAgua.disabled = true
-    let btnTierra = document.getElementById('btn-tierra')
     btnTierra.disabled = true
-
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'flex'
-    let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'flex'
-
 }
 
 function reiniciarJuego() {

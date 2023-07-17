@@ -44,13 +44,9 @@ function iniciarJuego() {
 }
 
 function seleccionarMascota() {
-    
     sectionSeleccionarMascota.style.display = 'none'
-    
     sectionSeleccionarAtaque.style.display = 'flex'
-    
     sectionReiniciar.style.display = 'none'
-
     
     if (inputHipodoge.checked) {
         spanNombreMascota.innerHTML = 'Hipodoge'
@@ -64,7 +60,6 @@ function seleccionarMascota() {
     } else {
         //alert('Debes seleccionar una mascota')
     }
-
     mascotaEnemigo()
 }
 
@@ -79,7 +74,6 @@ function mascotaEnemigo() {
         //Ratigueya
         spanEnemy.innerHTML = 'Ratigueya'
     }
-
 }
 
 function ataqueFuego() {
@@ -171,6 +165,5 @@ function reiniciarJuego() {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 
 window.addEventListener('load', iniciarJuego)

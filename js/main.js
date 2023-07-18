@@ -28,29 +28,68 @@ const nuevoAtaqueEnemigo = document.createElement('p')
 
 const parrafo = document.createElement('p')
 
-let ataqueJugador
-let ataqueEnemigo
-let vidasJugador = 3
-let vidasEnemigo = 3
+const contTarjetas = document.getElementById('cont-tarjetas')
+
+let mokepones = [] // ARRAY o arreglos
+let opciondeMokepones;
+let ataqueJugador;
+let ataqueEnemigo;
+let vidasJugador = 3;
+let vidasEnemigo = 3;
 
 class Mokepon {
-    constructor(nombre, foto, vida){
+    constructor(nombre, foto, vida) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
+        this.ataques = []
     };
 };
 
 let hipodoge = new Mokepon('Hipodoge','img/mokepons_mokepon_hipodoge_attack.webp', 5);
-console.log(hipodoge);
-
 let capipepo = new Mokepon('Capipepo','img/mokepons_mokepon_capipepo_attack.webp', 5);
-console.log(capipepo);
-
 let ratigueya = new Mokepon('Ratigueya','img/mokepons_mokepon_ratigueya_attack.webp', 5);
-console.log(ratigueya);
+
+//mokepones.push(hipodoge, capipepo, ratigueya) // .push empuja los elementos al ARRAY
+
+hipodoge.ataques.push(
+    { nombre: '💦', id: 'btn-agua'},
+    { nombre: '💦', id: 'btn-agua'},
+    { nombre: '💦', id: 'btn-agua'},
+    { nombre: '🔥', id: 'btn-fuego'},
+    { nombre: '🌱', id: 'btn-tierra'},
+);
+
+capipepo.ataques.push(
+    { nombre: '💦', id: 'btn-agua'},
+    { nombre: '🔥', id: 'btn-fuego'},
+    { nombre: '🌱', id: 'btn-tierra'},
+    { nombre: '🌱', id: 'btn-tierra'},
+    { nombre: '🌱', id: 'btn-tierra'},
+);
+
+ratigueya.ataques.push(
+    { nombre: '💦', id: 'btn-agua'},
+    { nombre: '🔥', id: 'btn-fuego'},
+    { nombre: '🔥', id: 'btn-fuego'},
+    { nombre: '🔥', id: 'btn-fuego'},
+    { nombre: '🌱', id: 'btn-tierra'},
+);
+
+mokepones.push(hipodoge, capipepo, ratigueya);
 
 function iniciarJuego() {
+    mokepones.forEach(function(mokepon) {
+        var opciondeMokepones = `
+          <input type="radio" name="mascota" id="${mokepon.nombre}">
+          <label class="tarjeta-de-mokepon" for="${mokepon.nombre}">
+              <p>${mokepon.nombre}</p>
+              <img src="${mokepon.foto}" alt="${mokepon.nombre}">
+          </label>
+        `;
+        contTarjetas.innerHTML += opciondeMokepones
+      });
+    // forEach es: por cada uno de los elementos de nuestro ARRAY
     sectionSeleccionarAtaque.style.display = 'none'
     sectionReiniciar.style.display = 'none'    
     btnMascota.addEventListener('click', seleccionarMascota)

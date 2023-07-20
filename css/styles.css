@@ -96,6 +96,10 @@ button {
     font-size: 24px;
 }
 
+#btn-Mascota {
+    display: block;
+}
+
 button:hover {
     background-color: #5D8BF4;
     transform: scale(1.3);

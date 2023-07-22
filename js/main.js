@@ -2,7 +2,7 @@ const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
 const botonTierra = document.getElementById('boton-tierra')
-sectionReiniciar.style.display = 'none'
+
 const botonFuego = document.getElementById('boton-fuego')
 const botonAgua = document.getElementById('boton-agua')
 const botonReiniciar = document.getElementById('boton-reiniciar')
@@ -93,7 +93,6 @@ function iniciarJuego() {
     })
     
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
-
     
     botonFuego.addEventListener('click', ataqueFuego)
     
@@ -101,18 +100,13 @@ function iniciarJuego() {
     
     botonTierra.addEventListener('click', ataqueTierra)
 
-    
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 function seleccionarMascotaJugador() {
-    
     sectionSeleccionarMascota.style.display = 'none'
-    
-    
     sectionSeleccionarAtaque.style.display = 'flex'
-    
-    
+    sectionReiniciar.style.display = 'none'
     
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = 'Hipodoge'
@@ -123,7 +117,6 @@ function seleccionarMascotaJugador() {
     } else {
         alert('Selecciona una mascota')
     }
-
     seleccionarMascotaEnemigo()
 }
 
@@ -162,13 +155,10 @@ function ataqueAleatorioEnemigo() {
     } else {
         ataqueEnemigo = 'TIERRA'
     }
-
     combate()
 }
 
-function combate() {
-    
-    
+function combate() {    
     if(ataqueEnemigo == ataqueJugador) {
         crearMensaje("EMPATE")
     } else if(ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
@@ -188,7 +178,6 @@ function combate() {
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
-
     revisarVidas()
 }
 
@@ -201,8 +190,6 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultado) {
-    
-    
     let nuevoAtaqueDelJugador = document.createElement('p')
     let nuevoAtaqueDelEnemigo = document.createElement('p')
 
@@ -214,9 +201,7 @@ function crearMensaje(resultado) {
     ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
 }
 
-function crearMensajeFinal(resultadoFinal) {
-    
-    
+function crearMensajeFinal(resultadoFinal) {  
     sectionMensajes.innerHTML = resultadoFinal
 
     

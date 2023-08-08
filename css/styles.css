@@ -99,7 +99,7 @@ button {
 }
 
 button:hover {
-    background-color: #7ca0f3;
+    background-color: #004cff;
     transform: scale(1.3);
     transition: all 0.3s ease;
 }

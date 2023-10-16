@@ -13,6 +13,11 @@ const ataquesDelJugador = document.getElementById("ataques-del-jugador");
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 const contenedorTarjetas = document.getElementById("contenedorTarjetas");
 const contenedorAtaques = document.getElementById("contenedorAtaques");
+
+const sectionVerMapa = document.getElementById('VERMAPA')
+const mapa = document.getElementById('MAPA')
+let lienzo = mapa.getContext('2d') //usar el lienzo para dibijar dentro del canvas
+
 let mokepones = [];
 let ataqueJugador = [];
 let ataqueEnemigo = [];
@@ -82,6 +87,7 @@ mokepones.push(hipodoge, capipepo, ratigueya);
 
 function iniciarJuego() {
   sectionSeleccionarAtaque.style.display = "none";
+  sectionVerMapa.style.display = "none";
   mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
         <input type="radio" name="mascota" id=${mokepon.nombre} />
@@ -100,7 +106,20 @@ function iniciarJuego() {
 }
 function seleccionarMascotaJugador() {
   sectionSeleccionarMascota.style.display = "none";
-  sectionSeleccionarAtaque.style.display = "flex";
+  // sectionSeleccionarAtaque.style.display = "flex";
+  sectionVerMapa.style.display = "flex";
+  // lienzo.fillRect(5,15,20,40) //crea un rectangulo dentro del canvas
+  let imagenCapipepo = new Image()
+  imagenCapipepo.src = capipepo.foto // Objeto.Propiedad
+  lienzo.drawImage(
+    imagenCapipepo,
+    20, //  X
+    40, //  Y
+    100, // width
+    100, // Heith
+  )
+  
+
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
     mascotaJugador = inputHipodoge.id;

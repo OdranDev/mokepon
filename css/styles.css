@@ -150,6 +150,16 @@ button:hover {
     align-items: center;
 }
 
+#VERMAPA {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#MAPA {
+    border: 1px solid white;
+}
+
 @media (max-width: 600px) {
     .tarjetas {
         flex-direction: column;

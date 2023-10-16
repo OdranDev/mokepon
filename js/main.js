@@ -3,7 +3,9 @@ const sectionReiniciar = document.getElementById("reiniciar");
 const botonMascotaJugador = document.getElementById("boton-mascota");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 sectionReiniciar.style.display = "none";
-const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
+const sectionSeleccionarMascota = document.getElementById(
+  "seleccionar-mascota"
+);
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
 const spanVidasJugador = document.getElementById("vidas-jugador");
@@ -14,9 +16,9 @@ const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 const contenedorTarjetas = document.getElementById("contenedorTarjetas");
 const contenedorAtaques = document.getElementById("contenedorAtaques");
 
-const sectionVerMapa = document.getElementById('VERMAPA')
-const mapa = document.getElementById('MAPA')
-let lienzo = mapa.getContext('2d') //usar el lienzo para dibijar dentro del canvas
+const sectionVerMapa = document.getElementById("VERMAPA");
+const mapa = document.getElementById("MAPA");
+let lienzo = mapa.getContext("2d"); //usar el lienzo para dibijar dentro del canvas
 
 let mokepones = [];
 let ataqueJugador = [];
@@ -109,26 +111,30 @@ function seleccionarMascotaJugador() {
   // sectionSeleccionarAtaque.style.display = "flex";
   sectionVerMapa.style.display = "flex";
   // lienzo.fillRect(5,15,20,40) //crea un rectangulo dentro del canvas
-  let imagenCapipepo = new Image()
-  imagenCapipepo.src = capipepo.foto // Objeto.Propiedad
-  lienzo.drawImage(
-    imagenCapipepo,
-    20, //  X
-    40, //  Y
-    100, // width
-    100, // Heith
-  )
-  
-
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
     mascotaJugador = inputHipodoge.id;
+    let imagenHipodoge = new Image();
+    imagenHipodoge.src = hipodoge.foto;
+    lienzo.drawImage(imagenHipodoge, 20, 40, 100, 100);
   } else if (inputCapipepo.checked) {
     spanMascotaJugador.innerHTML = inputCapipepo.id;
     mascotaJugador = inputCapipepo.id;
+    let imagenCapipepo = new Image();
+    imagenCapipepo.src = capipepo.foto; // Objeto.Propiedad
+    lienzo.drawImage(
+      imagenCapipepo,
+      20, //  X
+      40, //  Y
+      100, // width
+      100 // heigth
+    );
   } else if (inputRatigueya.checked) {
     spanMascotaJugador.innerHTML = inputRatigueya.id;
     mascotaJugador = inputRatigueya.id;
+    let imagenRatigueya = new Image()
+    imagenRatigueya.src = ratigueya.foto
+    lienzo.drawImage(imagenRatigueya,20,40,100,100)
   } else {
     alert("Selecciona una mascota");
   }

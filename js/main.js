@@ -46,6 +46,12 @@ class Mokepon {
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
+    this.x = 20;
+    this.y = 20;
+    this.ancho = 80;
+    this.alto = 80;
+    this.mapaFoto = new Image();
+    this.mapaFoto.src = foto;
   }
 }
 let hipodoge = new Mokepon(
@@ -114,27 +120,12 @@ function seleccionarMascotaJugador() {
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
     mascotaJugador = inputHipodoge.id;
-    let imagenHipodoge = new Image();
-    imagenHipodoge.src = hipodoge.foto;
-    lienzo.drawImage(imagenHipodoge, 20, 40, 100, 100);
   } else if (inputCapipepo.checked) {
     spanMascotaJugador.innerHTML = inputCapipepo.id;
-    mascotaJugador = inputCapipepo.id;
-    let imagenCapipepo = new Image();
-    imagenCapipepo.src = capipepo.foto; // Objeto.Propiedad
-    lienzo.drawImage(
-      imagenCapipepo,
-      20, //  X
-      40, //  Y
-      100, // width
-      100 // heigth
-    );
+    mascotaJugador = inputCapipepo.id;    
   } else if (inputRatigueya.checked) {
     spanMascotaJugador.innerHTML = inputRatigueya.id;
     mascotaJugador = inputRatigueya.id;
-    let imagenRatigueya = new Image()
-    imagenRatigueya.src = ratigueya.foto
-    lienzo.drawImage(imagenRatigueya,20,40,100,100)
   } else {
     alert("Selecciona una mascota");
   }
@@ -277,5 +268,21 @@ function reiniciarJuego() {
 }
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function pintarPersonaje() {
+  lienzo.clearRect(0,0, mapa.width, mapa.height)
+  lienzo.drawImage(
+    capipepo.mapaFoto,
+    capipepo.x, //  X
+    capipepo.y, //  Y
+    capipepo.ancho, // width
+    capipepo.alto, // heigth
+  );
+}
+
+function moverCapipepo() {
+  capipepo.x = capipepo.x + 5;
+  pintarPersonaje();
 }
 window.addEventListener("load", iniciarJuego);

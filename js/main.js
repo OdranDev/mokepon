@@ -19,6 +19,7 @@ const contenedorAtaques = document.getElementById("contenedorAtaques");
 const sectionVerMapa = document.getElementById("VERMAPA");
 const mapa = document.getElementById("MAPA");
 let lienzo = mapa.getContext("2d"); //usar el lienzo para dibijar dentro del canvas
+let intervalo;
 
 let mokepones = [];
 let ataqueJugador = [];
@@ -52,6 +53,8 @@ class Mokepon {
     this.alto = 80;
     this.mapaFoto = new Image();
     this.mapaFoto.src = foto;
+    this.velocidadX = 0;
+    this.velocidadY = 0;
   }
 }
 let hipodoge = new Mokepon(
@@ -116,13 +119,14 @@ function seleccionarMascotaJugador() {
   sectionSeleccionarMascota.style.display = "none";
   // sectionSeleccionarAtaque.style.display = "flex";
   sectionVerMapa.style.display = "flex";
+  intervalo = setInterval(pintarPersonaje, 50);
   // lienzo.fillRect(5,15,20,40) //crea un rectangulo dentro del canvas
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
     mascotaJugador = inputHipodoge.id;
   } else if (inputCapipepo.checked) {
     spanMascotaJugador.innerHTML = inputCapipepo.id;
-    mascotaJugador = inputCapipepo.id;    
+    mascotaJugador = inputCapipepo.id;
   } else if (inputRatigueya.checked) {
     spanMascotaJugador.innerHTML = inputRatigueya.id;
     mascotaJugador = inputRatigueya.id;
@@ -271,34 +275,37 @@ function aleatorio(min, max) {
 }
 
 function pintarPersonaje() {
-  lienzo.clearRect(0,0, mapa.width, mapa.height)
+  capipepo.x = capipepo.x + capipepo.velocidadX;
+  capipepo.y = capipepo.y + capipepo.velocidadY;
+  lienzo.clearRect(0, 0, mapa.width, mapa.height);
   lienzo.drawImage(
     capipepo.mapaFoto,
     capipepo.x, //  X
     capipepo.y, //  Y
     capipepo.ancho, // width
-    capipepo.alto, // heigth
+    capipepo.alto // heigth
   );
 }
 
 function moverDerecha() {
-  capipepo.x = capipepo.x + 5;
-  pintarPersonaje();
+  capipepo.velocidadX = 5;
 }
 
 function moverIzquierda() {
-  capipepo.x = capipepo.x - 5;
-  pintarPersonaje();
+  capipepo.velocidadX = -5;
 }
 
 function moverArriba() {
-  capipepo.y = capipepo.y -5;
-  pintarPersonaje();
- }
+  capipepo.velocidadY = -5;
+}
 
- function moverAbajo() {
-  capipepo.y = capipepo.y + 5;
-  pintarPersonaje();
- }
+function moverAbajo() {
+  capipepo.velocidadY = 5;
+}
+
+function detenerMovimiento() {
+  capipepo.velocidadX = 0;
+  capipepo.velocidadY = 0;
+}
 
 window.addEventListener("load", iniciarJuego);

@@ -119,12 +119,7 @@ function seleccionarMascotaJugador() {
   sectionSeleccionarMascota.style.display = "none";
   sectionVerMapa.style.display = "flex";
   // sectionSeleccionarAtaque.style.display = "flex";
-
-  intervalo = setInterval(pintarPersonaje, 50);
-
-  window.addEventListener('keydown', sePresionoUnaTecla)
-  
-  window.addEventListener('keyup', detenerMovimiento)
+  iniciarMapa()
 
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -314,7 +309,34 @@ function detenerMovimiento() {
 }
 
 function sePresionoUnaTecla(event) {
-  console.log(event.key);
+  switch (event.key) {
+    case 'ArrowUp':
+      moverArriba()
+      break
+
+    case 'ArrowDown':
+      moverAbajo()
+      break
+
+    case 'ArrowLeft':
+      moverIzquierda()
+      break
+
+    case 'ArrowRight':
+      moverDerecha()
+      break 
+
+    default:
+      break
+  }
 }
 
+function iniciarMapa() {
+
+  intervalo = setInterval(pintarPersonaje, 50);
+
+  window.addEventListener('keydown', sePresionoUnaTecla)
+  
+  window.addEventListener('keyup', detenerMovimiento)
+}
 window.addEventListener("load", iniciarJuego);

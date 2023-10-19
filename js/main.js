@@ -117,10 +117,15 @@ function iniciarJuego() {
 }
 function seleccionarMascotaJugador() {
   sectionSeleccionarMascota.style.display = "none";
-  // sectionSeleccionarAtaque.style.display = "flex";
   sectionVerMapa.style.display = "flex";
+  // sectionSeleccionarAtaque.style.display = "flex";
+
   intervalo = setInterval(pintarPersonaje, 50);
-  // lienzo.fillRect(5,15,20,40) //crea un rectangulo dentro del canvas
+
+  window.addEventListener('keydown', sePresionoUnaTecla)
+  
+  window.addEventListener('keyup', detenerMovimiento)
+
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
     mascotaJugador = inputHipodoge.id;
@@ -306,6 +311,10 @@ function moverAbajo() {
 function detenerMovimiento() {
   capipepo.velocidadX = 0;
   capipepo.velocidadY = 0;
+}
+
+function sePresionoUnaTecla(event) {
+  console.log(event.key);
 }
 
 window.addEventListener("load", iniciarJuego);

@@ -72,47 +72,23 @@ class Mokepon {
   }
 }
 let hipodoge = new Mokepon(
-  "Hipodoge",
-  "img/mokepons_mokepon_hipodoge_attack.webp",
-  5,
-  'img/hipodoge.webp'
+  "Hipodoge", "img/mokepons_mokepon_hipodoge_attack.webp", 5, 'img/hipodoge.webp'
 );
 let capipepo = new Mokepon(
-  "Capipepo",
-  "img/mokepons_mokepon_capipepo_attack.webp",
-  5, 
-  'img/capipepo.webp'
+  "Capipepo", "img/mokepons_mokepon_capipepo_attack.webp", 5, 'img/capipepo.webp'
 );
 let ratigueya = new Mokepon(
-  "Ratigueya",
-  "img/mokepons_mokepon_ratigueya_attack.webp",
-  5,
-  'img/ratigueya.webp'
+  "Ratigueya", "img/mokepons_mokepon_ratigueya_attack.webp", 5, 'img/ratigueya.webp'
 );
 
 let hipodogeEnemigo = new Mokepon(
-  "Hipodoge",
-  "img/mokepons_mokepon_hipodoge_attack.webp",
-  5,
-  'img/hipodoge.webp',
-  150,
-  190,
+  "Hipodoge", "img/mokepons_mokepon_hipodoge_attack.webp", 5, 'img/hipodoge.webp', 150, 190,
 );
 let capipepoEnemigo = new Mokepon(
-  "Capipepo",
-  "img/mokepons_mokepon_capipepo_attack.webp",
-  5, 
-  'img/capipepo.webp',
-  200,
-  170,
+  "Capipepo", "img/mokepons_mokepon_capipepo_attack.webp", 5, 'img/capipepo.webp', 200, 170,
 );
 let ratigueyaEnemigo = new Mokepon(
-  "Ratigueya",
-  "img/mokepons_mokepon_ratigueya_attack.webp",
-  5,
-  'img/ratigueya.webp',
-  290, 
-  120,
+  "Ratigueya", "img/mokepons_mokepon_ratigueya_attack.webp", 5, 'img/ratigueya.webp', 290, 120,
   );
 
 hipodoge.ataques.push(
@@ -315,7 +291,6 @@ function reiniciarJuego() {
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 function pintarCanvas() {
   mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
   mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
@@ -331,8 +306,15 @@ function pintarCanvas() {
   hipodogeEnemigo.pintarMokepon()
   capipepoEnemigo.pintarMokepon()
   ratigueyaEnemigo.pintarMokepon()
+  if (
+    mascotaJugadorObjeto.velocidadX !== 0 || 
+    mascotaJugadorObjeto.velocidadY !== 0
+  ) {
+    revisarColision(hipodogeEnemigo)
+    revisarColision(capipepoEnemigo)
+    revisarColision(ratigueyaEnemigo)
+  }
 }
-
 function moverDerecha() {
   mascotaJugadorObjeto.velocidadX = 5;
 }
@@ -386,5 +368,26 @@ function obtenerObjetoMascota() {
     }
   }
 }
+function revisarColision(enemigo) {
+  const arribaEnemigo = enemigo.y
+  const abajoEnemigo = enemigo.y + enemigo.alto
+  const derechaEnemigo = enemigo.x + enemigo.ancho
+  const izquierdaEnemigo = enemigo.x
 
+  const arribaMascota = mascotaJugadorObjeto.y
+  const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto
+  const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho
+  const izquierdaMascota = mascotaJugadorObjeto.x
+
+  if (
+    abajoMascota < arribaEnemigo ||
+    arribaMascota > abajoEnemigo ||
+    derechaMascota < izquierdaEnemigo ||
+    izquierdaMascota > derechaEnemigo
+  ) {
+    return
+  }
+  detenerMovimiento()
+  alert("Hay Colision: " + enemigo.nombre)
+}
 window.addEventListener("load", iniciarJuego);

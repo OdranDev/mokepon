@@ -156,9 +156,9 @@ button:hover {
     justify-content: center;
 }
 
-#MAPA {
+/* #MAPA { 
     border: 1px solid white;
-}
+}*/
 
 @media (max-width: 600px) {
     .tarjetas {

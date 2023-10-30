@@ -18,18 +18,19 @@ const contenedorAtaques = document.getElementById("contenedorAtaques");
 
 const sectionVerMapa = document.getElementById("VERMAPA");
 const mapa = document.getElementById("MAPA");
-let lienzo = mapa.getContext("2d"); //usar el lienzo para dibijar dentro del canvas
+let lienzo = mapa.getContext("2d"); //usar el lienzo para dibujar dentro del canvas
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = 'img/mokemap.png'
 let mascotaJugadorObjeto
 let alturaQueBuscamos
 let anchoDelMapa = window.innerWidth - 20
-alturaQueBuscamos = anchoDelMapa * 0.75
 const anchoMaximoDelMapa = 350
 if (anchoDelMapa > anchoMaximoDelMapa) {
   anchoDelMapa = anchoMaximoDelMapa - 20
 }
+alturaQueBuscamos = anchoDelMapa * 0.75
+
 mapa.width = anchoDelMapa
 mapa.height = alturaQueBuscamos
 

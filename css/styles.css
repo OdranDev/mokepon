@@ -94,7 +94,7 @@ button {
     border: 2px solid white;
     background-color: #11468f;
     color: white;
-    margin-top: 20px;
+    margin: 10px 0;
     font-size: 24px;
 }
 
@@ -156,9 +156,6 @@ button:hover {
     justify-content: center;
 }
 
-/* #MAPA { 
-    border: 1px solid white;
-}*/
 
 @media (max-width: 600px) {
     .tarjetas {
@@ -187,5 +184,13 @@ button:hover {
     .tarjetas-ataques {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 400px) {
+    #VERMAPA div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

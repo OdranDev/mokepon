@@ -54,6 +54,8 @@ let victoriasJugador = 0;
 let victoriasEnemigo = 0;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+// BACK
+let jugadorId = null
 
 class Mokepon {
   constructor(nombre, foto, vida, fotoMapa) {
@@ -178,6 +180,7 @@ function unirseAlJuego() {
         res.text()
           .then(function (respuesta) {
             console.log(respuesta)
+            jugadorId = respuesta
           })
       }
     })
@@ -202,7 +205,24 @@ function seleccionarMascotaJugador() {
   extraerAtaques(mascotaJugador);
   sectionVerMapa.style.display = "flex";
   iniciarMapa()
+  // BACK
+  seleccionarMokepon(mascotaJugador)
 }
+
+function seleccionarMokepon(mascotaJugador) {
+  // fetch("http://localhost:8080/mokepon/" + jugadorId)
+  fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      mokepon: mascotaJugador,
+    })
+  })
+  
+}
+
 function extraerAtaques(mascotaJugador) {
   let ataques;
   for (let i = 0; i < mokepones.length; i++) {

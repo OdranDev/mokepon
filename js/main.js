@@ -371,6 +371,9 @@ function pintarCanvas() {
       mapa.height
   )
   mascotaJugadorObjeto.pintarMokepon()
+
+  enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+
   hipodogeEnemigo.pintarMokepon()
   capipepoEnemigo.pintarMokepon()
   ratigueyaEnemigo.pintarMokepon()
@@ -383,6 +386,20 @@ function pintarCanvas() {
     revisarColision(ratigueyaEnemigo)
   }
 }
+
+function enviarPosicion(x, y) {
+  fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+      method: "post",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          x,
+          y
+      })
+  })
+}
+
 function moverDerecha() {
   mascotaJugadorObjeto.velocidadX = 5;
 }
@@ -424,7 +441,7 @@ function sePresionoUnaTecla(event) {
 function iniciarMapa() {
   mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
   console.log(mascotaJugadorObjeto, mascotaJugador)
-  intervalo = setInterval(pintarCanvas, 50);
+  intervalo = setInterval(pintarCanvas, 100);
   window.addEventListener('keydown', sePresionoUnaTecla)
   window.addEventListener('keyup', detenerMovimiento)
 }

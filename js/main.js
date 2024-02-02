@@ -56,6 +56,7 @@ let vidasJugador = 3;
 let vidasEnemigo = 3;
 // BACK
 let jugadorId = null
+let mokeponesEnemigos = []
 
 class Mokepon {
   constructor(nombre, foto, vida, fotoMapa, id= null) {
@@ -328,12 +329,15 @@ function crearMensajeFinal(resultadoFinal) {
   sectionMensajes.innerHTML = resultadoFinal;
   sectionReiniciar.style.display = "block";
 }
+
 function reiniciarJuego() {
   location.reload();
 }
+
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 function pintarCanvas() {
   mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX
   mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY
@@ -348,14 +352,12 @@ function pintarCanvas() {
   mascotaJugadorObjeto.pintarMokepon()
 
   enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+  mokeponesEnemigos.forEach(function (mokepon) {
+    mokepon.pintarMokepon();
+  })
 
-  // hipodogeEnemigo.pintarMokepon()
-  // capipepoEnemigo.pintarMokepon()
-  // ratigueyaEnemigo.pintarMokepon()
   if (
-    mascotaJugadorObjeto.velocidadX !== 0 || 
-    mascotaJugadorObjeto.velocidadY !== 0
-  ) {
+    mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
     // revisarColision(hipodogeEnemigo)
     // revisarColision(capipepoEnemigo)
     // revisarColision(ratigueyaEnemigo)
@@ -382,9 +384,9 @@ function enviarPosicion(x, y) {
       // o tambien podria ser:
       .then(function ({enemigos}) { 
         console.log(enemigos);
-        enemigos.forEach(function (enemigo) {
+        mokeponesEnemigos = enemigos.map(function (enemigo) { //map retorna un valor
           let mokeponEnemigo = null
-          const mokeponNombre = enemigo.mokepon.nombre || ""; //viene der servidor
+          const mokeponNombre = enemigo.mokepon.nombre || ""; //viene del servidor
           if (mokeponNombre === "Hipodoge") {
             mokeponEnemigo = new Mokepon(
               "Hipodoge", "img/mokepons_mokepon_hipodoge_attack.webp", 5, 'img/hipodoge.webp'
@@ -400,7 +402,7 @@ function enviarPosicion(x, y) {
           }
           mokeponEnemigo.x = enemigo.x;
           mokeponEnemigo.y = enemigo.y;
-          mokeponEnemigo.pintarMokepon();
+          return mokeponEnemigo;
         })
       })
     }
